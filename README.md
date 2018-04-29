@@ -1,4 +1,4 @@
-# elasticsearch-ingest-attachmen
+# elasticsearch-ingest-attachment
 
 elasticsearch + ingest-attachment to be used with nextcloud.
 
