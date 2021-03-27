@@ -1,12 +1,8 @@
 # FROM elasticsearch
-# this image on docker hub is deprecated (see https://hub.docker.com/_/elasticsearch/)
-# I am still using is because of docker hub's auto update
-# official:
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+# this image on docker hub was deprecated for some time (see https://hub.docker.com/_/elasticsearch/)
+# and still seems "weird" to me. So I am using one from elastic directly
+# (see https://www.docker.elastic.co/r/elasticsearch/elasticsearch)
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.15
 
-RUN bin/elasticsearch-plugin install ingest-attachment
-
-# remove x-pack because of license problems spamming log file with massive amounts of errors
-RUN bin/elasticsearch-plugin remove x-pack --purge \
-    &&  sed -i 's/^xpack/#xpack/' config/elasticsearch.yml
+RUN bin/elasticsearch-plugin install  --batch ingest-attachment
 
